@@ -1,0 +1,43 @@
+---
+title: "Data Exploration"
+author: "Fox Redmond"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+Exploring Food and Drink data from Farm to Table on April 17th. 
+
+```{r, message = FALSE, echo= FALSE}
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(shiny)
+library(DT)
+library(shiny)
+library(knitr)
+```
+
+
+```{r, message = FALSE, echo= FALSE}
+url <- "~/repos/data_story_5/app_data.csv"
+f2t <- read.csv(url, header = FALSE)
+ft2_labled <- f2t %>% rename("Entry time" = "V1", "Food/Drink" = "V2", "Before/After Farm to Table" = "V3", "Quantity (lbs)" = "V4")
+```
+
+
+```{r, echo= FALSE}
+ggplot(f2t,
+       aes(x = V3,
+           y = V4,
+           fill = V2
+       )) +
+  geom_col(position = "dodge") +
+  scale_x_discrete(limits = c("Before", "After")) +
+  labs(title = "Tracking Consumption at Farm to Table",
+       x = "Before and After Farm to Table Meal",
+       y = "Quantity of Food/Drink (lbs)")
+```
+
+```{r, echo= FALSE}
+ft2_labled %>% kable
+```
