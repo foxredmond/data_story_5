@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
-Exploring Food and Drink data from Farm to Table on April 17th. 
+Exploring Food & Drink data from Farm to Table on April 17th. 
 
 ```{r, message = FALSE, echo= FALSE}
 library(dplyr)
