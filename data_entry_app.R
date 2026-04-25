@@ -17,36 +17,40 @@ log_line <- function(newdata, filename = 'app_data.csv'){
 ui <- fluidPage(
   titlePanel(h2("Farm to Table Food & Drink")),
   p("This Shiny Data Collection is designed to track food and drink quantities at Sewanee's Farm to Table event
-    that occured on April 17th."),
-    p("The goal is that by tracking consumption, the event can mitigate purhcasing too much food, leading to food waste, which has occured in past iterations of the event."),
+    that occured on April 17th. \n The goal is that by tracking the amount purchased vs consumed, the event can mitigate purhcasing too much food, leading to food waste, which has occured in past iterations of the event."),
   br(),
   fluidRow(
 
-    # Example input: selecting pre-canned options
+    # Input: selecting pre-canned options
     column(4, selectInput('select',
                           label='Select Food/Drink',
-                          choices = c('Meatballs', 'Burgers', 'Bratwursts', 'Mushrooms', 'Cookies','Kombucha','Water Kefir'),
-                          width='95%')),
+                          choices = c('Meatballs', 'Burgers', 'Bratwursts', 'Mushrooms','Kombucha','Water Kefir'),
+                          width='95%'),
+           helpText("This is the food or drink you'll be recoding")),
+           
 
-    # Example input: toggling between options
+    # Input: toggling between options
     column(4, radioButtons('radio',
-                           label='Before or After Event',
-                           choices = c('Before', 'After'),
+                           label= 'Initial purchase or final remainder?',
+                           choices = c('purchased', 'remaining'),
                            inline = TRUE,
-                           width='95%')),
+                           width='95%'),
+           helpText("This is where you select whether you are recoding after purchasing the food or after surveying the leftovers.")),
 
-    # Example input: Numeric entry
+    #Input: Numeric entry
   column(4, numericInput(
     "quantity",
-    "Quantity of selected food/drink after event (lbs)",
+    "Quantity of selected food/drink (lbs)",
     value = 1,
     min = 0,
-    max = 100))),
+    max = 100),
+    helpText("This is where you select the quanity of the selected food at the selected time."))),
 
   br(),
   br(),
+  
+  #Input: Save button
   fluidRow(column(2),
-           # Save button!
            column(8, actionButton('save',
                                   h2('Save!'),
                                   width='100%')),

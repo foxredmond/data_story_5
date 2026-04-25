@@ -21,7 +21,7 @@ library(knitr)
 ```{r, message = FALSE, echo= FALSE}
 url <- "~/repos/data_story_5/app_data.csv"
 f2t <- read.csv(url, header = FALSE)
-ft2_labled <- f2t %>% rename("Entry time" = "V1", "Food/Drink" = "V2", "Before/After Farm to Table" = "V3", "Quantity (lbs)" = "V4")
+ft2_labled <- f2t %>% rename("Entry time" = "V1", "Food/Drink" = "V2", "Initial purchase or final remainder" = "V3", "Quantity (lbs)" = "V4")
 ```
 
 
@@ -32,10 +32,12 @@ ggplot(f2t,
            fill = V2
        )) +
   geom_col(position = "dodge") +
-  scale_x_discrete(limits = c("Before", "After")) +
-  labs(title = "Tracking Consumption at Farm to Table",
-       x = "Before and After Farm to Table Meal",
-       y = "Quantity of Food/Drink (lbs)")
+  scale_x_discrete(limits = c("purchased", "remaining")) +
+  labs(title = "Farm to Table saw very little excess purchasing especially with meat",
+       caption = "This figure compares food and drink quanties that were intially purhcased to what remained after \n the event. This can be used to determine what if anything was overpurchased, potentially leading \n to waste of funds or food.",
+       x = "Before vs After Farm to Table Meal",
+       y = "Quantity of Food/Drink (lbs)") +
+  theme_bw()
 ```
 
 ```{r, echo= FALSE}
