@@ -7,6 +7,9 @@ output: html_document
 
 Exploring Food & Drink data from Farm to Table on April 17th. 
 
+&nbsp;
+
+
 ```{r, message = FALSE, echo= FALSE}
 library(dplyr)
 library(ggplot2)
@@ -33,12 +36,16 @@ ggplot(f2t,
        )) +
   geom_col(position = "dodge") +
   scale_x_discrete(limits = c("purchased", "remaining")) +
-  labs(title = "Farm to Table saw very little excess purchasing especially with meat",
+  labs(title = "Farm to Table saw very little excess purchasing, especially with meat",
        caption = "This figure compares food and drink quanties that were intially purhcased to what remained after \n the event. This can be used to determine what if anything was overpurchased, potentially leading \n to waste of funds or food.",
        x = "Before vs After Farm to Table Meal",
        y = "Quantity of Food/Drink (lbs)") +
   theme_bw()
 ```
+
+&nbsp;
+
+Table with figure data: 
 
 ```{r, echo= FALSE}
 ft2_labled %>% kable
